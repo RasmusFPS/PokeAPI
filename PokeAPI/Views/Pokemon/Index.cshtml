@@ -1,5 +1,21 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Pokemon Page";
+}
+
+@model List<PokeAPI.Models.Pokemon>
+
+<h1>All 1300 Pokémon!</h1>
+
+@if (Model == null)
+{
+    <p style="color:red">Failed to load Pokemon.</p>
+}
+else
+{
+    <ul>
+        @foreach (var pokemon in Model)
+        {
+            <li>@pokemon.Name</li>
+        }
+    </ul>
 }
