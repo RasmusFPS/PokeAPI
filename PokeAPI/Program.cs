@@ -12,7 +12,7 @@ namespace PokeAPI
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpClient<IPokemonService, PokemonService>(client =>
             {
-                client.BaseAddress = new Uri("https://pokeapi.co/api/v2/pokemon/");
+                client.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
                 client.Timeout = TimeSpan.FromSeconds(10);
             });
 
