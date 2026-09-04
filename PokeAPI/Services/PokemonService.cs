@@ -31,10 +31,30 @@ namespace PokeAPI.Services
                 return null;
             }
         }
+
+        public async Task<Pokemon?> GetPokemonDetails(string name)
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync($"pokemon/{name.ToLower()}");
+
+                var json = await response.Content.ReadAsStringAsync();
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                var pokemon = JsonSerializer.Deserialize<Pokemon>(json,options);
+
+                return pokemon;
+            }
+            catch (Exception ex)
+            { 
+                return null;
+            }
+        }
         internal class PokemonApiResponse()
         {
             [System.Text.Json.Serialization.JsonPropertyName("results")]
             public List<Pokemon>? Results { get; set; }
         }
     }
+
+    
 }
