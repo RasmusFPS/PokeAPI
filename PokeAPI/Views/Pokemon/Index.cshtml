@@ -1,21 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Pokemon Page";
+
+    
 }
 
 @model List<PokeAPI.Models.Pokemon>
 
 <h1>All 10 Pokémon!</h1>
-
+<div class="row">
 @if (Model == null)
 {
     <p style="color:red">Failed to load Pokemon.</p>
 }
 else
 {
-    <ul>
         @foreach (var pokemon in Model)
         {
-            <li>@pokemon.Name</li>
+            <div class="col">
+                <a asp-action="Details" asp-route-name="@pokemon.Name">
+                    <div class="card">
+                        <h5 class="card-title">@pokemon.Name</h5>
+                        <p class="text-primary">Klicka för stats</p>
+                    </div>
+                </a>
+            </div>
         }
-    </ul>
 }
+</div>

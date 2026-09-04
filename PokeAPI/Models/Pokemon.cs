@@ -16,6 +16,9 @@ namespace PokeAPI.Models
 
         [JsonPropertyName("stats")]
         public List<PokemonStat> Stats { get; set; } = new List<PokemonStat>();
+
+        [JsonPropertyName("sprites")]
+        public spritesData Sprites { get; set; }
     }
 
     public class spritesData
