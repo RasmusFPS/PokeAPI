@@ -16,11 +16,13 @@ namespace PokeAPI.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync("pokemon?limit=1300");
+                var response = await _httpClient.GetAsync("pokemon?limit=10");
                 response.EnsureSuccessStatusCode();
 
                 var json = await response.Content.ReadAsStringAsync();
-                var data = JsonSerializer.Deserialize<PokemonApiResponse>(json);
+
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                var data = JsonSerializer.Deserialize<PokemonApiResponse>(json, options);
 
                 return data.Results;
             }

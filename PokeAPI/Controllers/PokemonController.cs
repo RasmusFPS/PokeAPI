@@ -12,7 +12,7 @@ namespace PokeAPI.Controllers
             _pokemonService = pokemonService;
         }
 
-        public async Task<IActionResult> getPokemon()
+        public async Task<IActionResult> Index()
         {
             var pokemonlist = await _pokemonService.GetPokemon();
 
