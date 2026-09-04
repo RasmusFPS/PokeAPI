@@ -18,5 +18,12 @@ namespace PokeAPI.Controllers
 
             return View(pokemonlist);
         }
+
+        public async Task<IActionResult> Details(string name)
+        {
+            var pokemonDetails = await _pokemonService.GetPokemonDetails(name);
+
+            return View(pokemonDetails);
+        }
     }
 }
