@@ -1,0 +1,12 @@
+﻿@model PokeAPI.Models.Pokemon
+
+<div class="container">
+    <div class="card">
+        <h1 class="@Model.Name"></h1>
+
+        @if (Model.Sprites != null && !string.IsNullOrEmpty(Model.Sprites.FrontDefault))
+        {
+            <img src="@Model.Sprites.FrontDefault" alt="@Model.Name" />
+        }
+    </div>
+</div>
