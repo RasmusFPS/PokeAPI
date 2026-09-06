@@ -1,12 +1,37 @@
 ﻿@model PokeAPI.Models.Pokemon
 
 <div class="container">
-    <div class="card">
-        <h1 class="@Model.Name"></h1>
+    @if(Model == null)
+    {
+        <div>
+            <h2>Kunde inte hitta pokemonen!</h2>
+            <a asp-action="Index" class="btn">Tillbaka till sökning</a>
+        </div>
+    }
+    else
+    {
+        <div class="card">
+            <h1>@Model.Name</h1>
 
-        @if (Model.Sprites != null && !string.IsNullOrEmpty(Model.Sprites.FrontDefault))
-        {
-            <img src="@Model.Sprites.FrontDefault" alt="@Model.Name" />
-        }
-    </div>
+            @if (Model.Sprites != null && !string.IsNullOrEmpty(Model.Sprites.FrontDefault))
+            {
+                <img src="@Model.Sprites.FrontDefault" alt="@Model.Name" />
+            }
+
+            <hr />
+
+            <h3>Stats</h3>
+            <ul class="stats">
+                @foreach(var stat in Model.Stats)
+                {
+                    <li>
+                        <span>@stat.Stat.Name</span>
+                        <p>@stat.BaseStat</p>
+                    </li>
+                }
+            </ul>
+
+            <a asp-action="Index" class="btn">Tillbaka till sökning</a>
+        </div>
+    }
 </div>
