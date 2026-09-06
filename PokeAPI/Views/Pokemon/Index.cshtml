@@ -1,29 +1,49 @@
 ﻿@{
     ViewData["Title"] = "Pokemon Page";
 
-    
+
 }
 
 @model List<PokeAPI.Models.Pokemon>
 
-<h1>All 10 Pokémon!</h1>
-<div class="row">
+<form asp-action="Details" method="get" class="mb-4">
+    <div class="input-group" style="max-width: 450px;">
+        <input type="text"
+               name="name"
+               class="form-control bg-dark text-white border-secondary"
+               placeholder="Sök efter Pokemon"
+               required />
+        <button class="btn btn-info text-dark fw-bold px-4" type="submit">
+            Sök
+        </button>
+    </div>
+</form>
+
+<h1 class="mb-4 text-white">All 200 Pokemon!</h1>
+
 @if (Model == null)
 {
-    <p style="color:red">Failed to load Pokemon.</p>
+    <p class="color:red">Failed to load Pokemon.</p>
 }
 else
 {
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-3">
         @foreach (var pokemon in Model)
         {
             <div class="col">
-                <a asp-action="Details" asp-route-name="@pokemon.Name">
-                    <div class="card">
-                        <h5 class="card-title">@pokemon.Name</h5>
-                        <p class="text-primary">Klicka för stats</p>
+                <a asp-action="Details" asp-route-name="@pokemon.Name" class="text-decoration-none">
+                    <div class="card h-100 bg-dark text-white border-secondary text-center shadow-sm p-3 pokemon-card">
+                        <div class="card-body d-flex flex-column justify-content-between p-2">
+                            <h5 class="card-title text-capitalize text-white my-3">
+                                @pokemon.Name
+                            </h5>
+                            <span class="btn btn-outline-info btn-sm w-100 mt-2">
+                                Klicka för stats
+                            </span>
+                        </div>
                     </div>
                 </a>
             </div>
         }
+    </div>
 }
-</div>
