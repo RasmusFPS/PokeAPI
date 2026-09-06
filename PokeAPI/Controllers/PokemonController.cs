@@ -23,6 +23,11 @@ namespace PokeAPI.Controllers
         {
             var pokemonDetails = await _pokemonService.GetPokemonDetails(name);
 
+            if(pokemonDetails == null)
+            {
+                return View("Error");
+            }
+
             return View(pokemonDetails);
         }
     }
