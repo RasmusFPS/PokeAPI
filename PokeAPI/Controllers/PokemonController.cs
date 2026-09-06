@@ -21,11 +21,16 @@ namespace PokeAPI.Controllers
 
         public async Task<IActionResult> Details(string name)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                return RedirectToAction("Index");
+            }
+
             var pokemonDetails = await _pokemonService.GetPokemonDetails(name);
 
             if(pokemonDetails == null)
             {
-                return View("Error");
+                return View((PokeAPI.Models.Pokemon?)null);
             }
 
             return View(pokemonDetails);

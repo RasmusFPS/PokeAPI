@@ -16,7 +16,7 @@ namespace PokeAPI.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync("pokemon?limit=10");
+                var response = await _httpClient.GetAsync("pokemon?limit=200");
                 response.EnsureSuccessStatusCode();
 
                 var json = await response.Content.ReadAsStringAsync();
@@ -36,7 +36,7 @@ namespace PokeAPI.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"pokemon/{name.ToLower()}");
+                var response = await _httpClient.GetAsync($"pokemon/{name.ToLower().Trim()}");
 
                 var json = await response.Content.ReadAsStringAsync();
                 var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
